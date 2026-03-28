@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JD Premium Dental | Healthy Tooth Clinic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-dark: #0f766e;
+    --teal-light: #99f6e4;
+    --teal-pale: #f0fdfa;
+    --dark: #0f2027;
+    --text: #1e3a3a;
+    --muted: #5f8080;
+    --white: #fff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(13,148,136,0.12);
+    padding: 14px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .logo-circle {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--teal), #134e4a);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .logo-text {
+    line-height: 1.1;
+  }
+
+  .logo-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--teal-dark);
+  }
+
+  .logo-text p { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 14px; color: var(--text); font-weight: 400; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal);
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background .2s, transform .2s;
+  }
+  .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #f0fdfa 0%, #fff 50%, #e6fffa 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '🦷';
+    position: absolute;
+    font-size: 320px;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 600px; animation: fadeUp .8s ease both; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--teal-pale);
+    border: 1px solid rgba(13,148,136,0.2);
+    color: var(--teal);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .hero-badge span { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; animation: pulse 1.5s infinite; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 68px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--teal);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,148,136,0.3); }
+
+  .btn-outline {
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all .2s;
+  }
+  .btn-outline:hover { background: var(--teal-pale); }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(13,148,136,0.1);
+  }
+
+  .stat h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900;
+    color: var(--teal);
+  }
+  .stat p { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* OPEN BADGE */
+  .open-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #dcfce7; color: #166534;
+    padding: 6px 14px; border-radius: 50px;
+    font-size: 12px; font-weight: 500;
+    margin-top: 20px;
+  }
+  .open-badge .dot { width: 6px; height: 6px; background: #16a34a; border-radius: 50%; animation: pulse 1s infinite; }
+
+  /* SERVICES */
+  .services {
+    padding: 90px 5%;
+    background: #fff;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--teal-pale);
+    border: 1px solid rgba(13,148,136,0.1);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all .3s;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(13,148,136,0.12);
+    border-color: rgba(13,148,136,0.3);
+  }
+
+  .service-icon { font-size: 36px; margin-bottom: 16px; }
+
+  .service-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--dark); margin-bottom: 8px;
+  }
+
+  .service-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* WHY US */
+  .why {
+    padding: 90px 5%;
+    background: linear-gradient(135deg, var(--dark) 0%, #134e4a 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(153,246,228,0.06) 0%, transparent 70%);
+    bottom: -200px; right: -100px;
+  }
+
+  .why .section-title { color: #fff; }
+  .why .section-label { color: var(--teal-light); }
+  .why .section-sub { color: rgba(255,255,255,0.6); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .why-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(153,246,228,0.12);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: all .3s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(153,246,228,0.25); }
+
+  .why-icon { font-size: 32px; margin-bottom: 14px; }
+  .why-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .why-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* HOURS */
+  .hours {
+    padding: 80px 5%;
+    background: var(--teal-pale);
+  }
+
+  .hours-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hours-table {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(13,148,136,0.08);
+  }
+
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 28px;
+    border-bottom: 1px solid rgba(13,148,136,0.08);
+    font-size: 15px;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row.closed { background: #fef2f2; }
+
+  .day { font-weight: 500; color: var(--text); }
+  .time { color: var(--teal); font-weight: 500; }
+  .time.closed-text { color: #ef4444; }
+
+  /* CONTACT */
+  .contact {
+    padding: 90px 5%;
+    background: #fff;
+  }
+
+  .contact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .contact-info p {
+    font-size: 15px; color: var(--muted);
+    line-height: 1.7; margin-bottom: 32px;
+  }
+
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .contact-icon {
+    width: 42px; height: 42px;
+    background: var(--teal-pale);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .contact-item h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+  .contact-item p { font-size: 15px; color: var(--text); font-weight: 500; }
+  .contact-item a { color: var(--text); text-decoration: none; }
+  .contact-item a:hover { color: var(--teal); }
+
+  .contact-form {
+    background: var(--teal-pale);
+    border-radius: 24px;
+    padding: 36px 32px;
+  }
+
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--dark);
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid rgba(13,148,136,0.15);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,148,136,0.08); }
+
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    margin-top: 8px;
+  }
+  .btn-submit:hover { background: var(--teal-dark); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(13,148,136,0.3); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px 5%;
+    font-size: 13px;
+  }
+
+  footer span { color: var(--teal-light); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 58px; height: 58px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    font-size: 28px;
+    z-index: 999;
+    transition: transform .2s;
+    animation: fadeUp 1s ease both;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  /* MOBILE */
+  .hamburger { display: none; }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: block; font-size: 22px; cursor: pointer; background: none; border: none; color: var(--teal); }
+    .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero-stats { gap: 20px; }
+    .hero::after { display: none; }
+    .why-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 500px) {
+    .why-grid, .services-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-circle">🦷</div>
+    <div class="logo-text">
+      <h3>JD Premium Dental</h3>
+      <p>Healthy Tooth Clinic</p>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+918743046085" class="nav-cta">📞 Book Appointment</a>
+  <button class="hamburger">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span></span> Najafgarh's Trusted Dental Clinic
+    </div>
+    <h1>A Good Smile<br>Makes Your <em>Day</em></h1>
+    <p>Expert dental care with a gentle touch. From routine checkups to advanced treatments — your smile is our passion.</p>
+    <div class="hero-btns">
+      <a href="tel:+918743046085" class="btn-primary">📞 Call Now</a>
+      <a href="https://wa.me/918743046085" target="_blank" class="btn-outline">💬 WhatsApp</a>
+    </div>
+    <div class="open-badge">
+      <div class="dot"></div> Open Now · 24 Hours
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <h3>24/7</h3>
+        <p>Emergency Care</p>
+      </div>
+      <div class="stat">
+        <h3>6/7</h3>
+        <p>Days a Week</p>
+      </div>
+      <div class="stat">
+        <h3>100%</h3>
+        <p>Patient Satisfaction</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label">What We Offer</p>
+  <h2 class="section-title">Our Dental Services</h2>
+  <p class="section-sub">Comprehensive dental treatments tailored to keep your smile healthy and beautiful.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h4>Dental Checkup</h4>
+      <p>Thorough examination and cleaning to keep your teeth in perfect health.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h4>Teeth Whitening</h4>
+      <p>Professional whitening treatments for a brighter, more confident smile.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦷</div>
+      <h4>Root Canal</h4>
+      <p>Pain-free root canal treatment with advanced techniques and instruments.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">😁</div>
+      <h4>Orthodontics</h4>
+      <p>Braces and aligners to straighten teeth and perfect your bite.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🦴</div>
+      <h4>Dental Implants</h4>
+      <p>Permanent tooth replacement solutions that look and feel natural.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🩺</div>
+      <h4>Emergency Care</h4>
+      <p>24/7 emergency dental services — because tooth pain doesn't wait.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <p class="section-label">Why Choose Us</p>
+  <h2 class="section-title">Premium Care You Can Trust</h2>
+  <p class="section-sub">We combine expertise, advanced technology, and a caring approach to deliver exceptional dental care.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⏰</div>
+      <h4>Open 24 Hours</h4>
+      <p>Available round the clock for emergencies and scheduled appointments.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎓</div>
+      <h4>Expert Doctors</h4>
+      <p>Highly qualified and experienced dental professionals dedicated to your care.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏥</div>
+      <h4>Modern Equipment</h4>
+      <p>State-of-the-art dental technology for precise and comfortable treatment.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <h4>Affordable Prices</h4>
+      <p>Quality dental care at reasonable prices. No hidden charges, ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <p class="section-label">Visiting Hours</p>
+  <h2 class="section-title">When To Visit Us</h2>
+  <p class="section-sub">We are open almost every day of the week for your convenience.</p>
+
+  <div class="hours-inner">
+    <div class="hours-table">
+      <div class="hours-row"><span class="day">Monday</span><span class="time">Open 24 Hours</span></div>
+      <div class="hours-row"><span class="day">Tuesday</span><span class="time">Open 24 Hours</span></div>
+      <div class="hours-row closed"><span class="day">Wednesday</span><span class="time closed-text">Closed</span></div>
+      <div class="hours-row"><span class="day">Thursday</span><span class="time">Open 24 Hours</span></div>
+      <div class="hours-row"><span class="day">Friday</span><span class="time">Open 24 Hours</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span class="time">Open 24 Hours</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span class="time">Open 24 Hours</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title" style="text-align:center; margin-bottom:60px;">Book An Appointment</h2>
+
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Visit Our Clinic</h2>
+      <p>We're located in the heart of Najafgarh, easily accessible from the metro. Walk-ins welcome!</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>Plot No. 1467-68, Street No. 1,<br>Opp. Primary Health Centre &amp; Metro Parking Gate,<br>Jatav Mohalla, Najafgarh, New Delhi – 110043</p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p><a href="tel:+918743046085">+91 87430 46085</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div>
+          <h4>WhatsApp</h4>
+          <p><a href="https://wa.me/918743046085" target="_blank">Chat with us on WhatsApp</a></p>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">⏰</div>
+        <div>
+          <h4>Hours</h4>
+          <p>Open 24 Hours (Mon–Tue, Thu–Sun)<br>Closed on Wednesdays</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Book Appointment</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Dental Checkup</option>
+          <option>Teeth Whitening</option>
+          <option>Root Canal</option>
+          <option>Orthodontics</option>
+          <option>Dental Implants</option>
+          <option>Emergency Care</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea placeholder="Tell us about your concern..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">📅 Book Appointment</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>JD Premium Dental</span> · Najafgarh, New Delhi · All Rights Reserved</p>
+  <p style="margin-top:8px;">Made with ❤️ for healthier smiles</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/918743046085" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  function submitForm() {
+    alert('✅ Appointment request sent!\nWe will contact you shortly.\n\nOr call us directly: +91 87430 46085');
+  }
+
+  // Smooth scroll for mobile menu (basic)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeUp 0.6s ease forwards';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .why-card, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
